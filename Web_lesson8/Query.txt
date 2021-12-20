@@ -1,0 +1,107 @@
+--5 студентов с наибольшим средним баллом по всем предметам.--
+
+SELECT AVG(lesson.grade) AS heigth_grade, student.name, student.surname
+FROM lesson INNER JOIN student ON lesson.idstudent=student.idstudent
+GROUP BY student.name, student.surname
+ORDER BY AVG(lesson.grade) Desc
+Limit 5
+
+--1 студент с наивысшим средним баллом по одному предмету.--
+
+SELECT AVG(lesson.grade) AS heigth_grade, student.name, student.surname
+FROM lesson 
+INNER JOIN student ON lesson.idstudent=student.idstudent
+INNER JOIN subject ON lesson.idsubject=subject.idsubject
+WHERE subject.namesubject= 'Literature'
+GROUP BY student.name, student.surname
+ORDER BY AVG(lesson.grade) Desc
+Limit 1
+
+--средний балл в группе по одному предмету.--
+
+SELECT AVG(grade) AS AVG_grage, student.namegroup
+FROM lesson
+INNER JOIN student ON lesson.idstudent=student.idstudent
+INNER JOIN subject ON lesson.idsubject=subject.idsubject
+WHERE subject.namesubject= 'Physics'
+GROUP BY student.namegroup
+ORDER BY AVG(lesson.grade) Desc
+
+--Средний балл в потоке.--
+
+SELECT AVG(grade) AS AVG_grage
+FROM lesson
+
+--Какие курсы читает преподаватель.--
+
+SELECT teacher.name, teacher.surname, subject.namesubject
+FROM teacher
+INNER JOIN subject ON teacher.idteacher= subject.idteacher
+
+--Список студентов в группе.--
+
+SELECT *
+FROM student
+WHERE namegroup = 'MK-32'
+
+--Оценки студентов в группе по предмету.--
+SELECT student.namegroup, student.name, student.surname, lesson.grade, subject.namesubject
+FROM lesson 
+INNER JOIN student ON lesson.idstudent=student.idstudent 
+INNER JOIN subject ON lesson.idsubject=subject.idsubject
+WHERE subject.namesubject= 'Algebra' AND student.namegroup = 'MK-33'
+
+--Оценки студентов в группе по предмету на последнем занятии.--
+
+SELECT student.namegroup, student.name, student.surname, lesson.grade, subject.namesubject
+FROM lesson 
+INNER JOIN student ON lesson.idstudent=student.idstudent 
+INNER JOIN subject ON lesson.idsubject=subject.idsubject
+WHERE subject.namesubject= 'Geometry' AND student.namegroup = 'MK-31' AND dategrade='2021-11-13'
+
+--Список курсов, которые посещает студент.--
+
+SELECT student.name, student.surname, subject.namesubject
+FROM lesson
+INNER JOIN student ON lesson.idstudent=student.idstudent 
+INNER JOIN subject ON lesson.idsubject=subject.idsubject
+WHERE  student.surname='Dunning'
+GROUP BY student.name, student.surname, subject.namesubject
+
+--Список курсов, которые студенту читает преподаватель.--
+
+SELECT teacher.name, subject.namesubject,student.name, student.surname
+FROM lesson
+INNER JOIN student ON lesson.idstudent=student.idstudent 
+INNER JOIN subject ON lesson.idsubject=subject.idsubject
+INNER JOIN teacher ON subject.idteacher=teacher.idteacher
+WHERE  student.surname='Wattinham' AND teacher.name= 'Junina'
+GROUP BY teacher.name, subject.namesubject,student.name, student.surname
+
+--Средний балл, который преподаватель ставит студенту.--
+
+SELECT teacher.name, subject.namesubject,student.name, student.surname, AVG(grade) AS AVG_grage
+FROM lesson
+INNER JOIN student ON lesson.idstudent=student.idstudent 
+INNER JOIN subject ON lesson.idsubject=subject.idsubject
+INNER JOIN teacher ON subject.idteacher=teacher.idteacher
+WHERE  student.surname='Wattinham' AND teacher.name= 'Junina'
+GROUP BY teacher.name, subject.namesubject,student.name, student.surname
+
+--without namesubject
+SELECT teacher.name, student.name, student.surname, AVG(grade) AS AVG_grage
+FROM lesson
+INNER JOIN student ON lesson.idstudent=student.idstudent 
+INNER JOIN subject ON lesson.idsubject=subject.idsubject
+INNER JOIN teacher ON subject.idteacher=teacher.idteacher
+WHERE  student.surname='Wattinham' AND teacher.name= 'Junina'
+GROUP BY teacher.name, student.name, student.surname
+
+--Средний балл, который ставит преподаватель.--
+
+SELECT teacher.name, AVG(grade) AS AVG_grage
+FROM lesson
+INNER JOIN subject ON lesson.idsubject=subject.idsubject
+INNER JOIN teacher ON subject.idteacher=teacher.idteacher
+WHERE  teacher.name= 'Ingaberg'
+GROUP BY teacher.name

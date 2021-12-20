@@ -1,0 +1,20 @@
+<html>
+<body>
+ <h1>Персональный помощник</h1>
+ <a href="{{url_for('newContact')}}">
+   <button>Добавить контакт</button>
+ </a>
+ <ol>
+   {% for contact in contacts %}
+    <li> {{contact.name}} {{contact.surname}} {{contact.phone}} {{contact.birthday}} {{contact.email}} {{contact.address}} </li>
+    <a href="{{url_for('editContact', contact_id = contact.id )}}">
+      Изменить
+    </a>
+    <a href="{{url_for('deleteContact', contact_id = contact.id )}}" style="margin-left: 10px;">
+      Удалить
+    </a>
+    <br> <br>
+  {% endfor %}
+ </ol>
+</body>
+</html>

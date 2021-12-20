@@ -1,0 +1,37 @@
+<form action="{{ url_for('editContact',contact_id = contact.id)}}" method="post">
+  <div class="form-group">
+    <label for="name">Имя:</label>
+    <input type="text" class="form-control" name="name" value="{{contact.name }}">
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="surname">Фамилия:</label>
+    <input type="text" class="form-control" name="surname" value="{{contact.surname }}">
+    </div>
+  <br>
+  <div class="form-group">
+    <label for="phone">Мобильный телефон (***-*******):</label>
+    <input type="tel" class="form-control" name="phone" pattern="[0-9]{3}-[0-9]{7}" value="{{contact.phone }}" >
+    </div>
+  <br>
+  <div class="form-group">
+    <label for="birthday">День рождение:</label>
+    <input type="date"  class="form-control" name="birthday" value="{{contact.birthday }}">
+  </div>
+  <br>
+    <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email"  class="form-control" name="email" value="{{contact.email }}">
+    </div>
+  <br>
+    <div class="form-group">
+    <label for="address">Адресс:</label>
+    <input type="text" class="form-control" name="address" value="{{contact.address }}">
+  </div>
+  <br>
+    <button type="submit">Обновить</button>
+
+</form>
+<a href='{{ url_for('showContacts') }}'>
+  <button>Отменить</button>
+</a>

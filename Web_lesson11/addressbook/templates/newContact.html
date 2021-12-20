@@ -1,0 +1,27 @@
+<h1>Новый контакт</h1>
+<form action="#" method="post">
+  <div class="form-group">
+    <label for="name">Имя:</label>
+    <input type="text" maxlength="100" name="name" placeholder="Имя">
+<br>
+    <label for="surname">Фамилия:</label>
+    <input type="text" maxlength="100" name="surname" placeholder="Фамилия">
+<br>
+    <label for="phone">Мобильный телефон:</label>
+    <input type="tel" maxlength="100" name="phone" pattern="[0-9]{3}-[0-9]{7}" placeholder="***-*******">
+<br>
+    <label for="birthday">День рождение:</label>
+    <input type="date"  maxlength="100" name="birthday">
+<br>
+    <label for="email">email:</label>
+    <input type="email"  name="email" placeholder="***@***">
+<br>
+    <label for="address">Адресс:</label>
+    <input maxlength="100" name="address" placeholder="Адресс">
+<br>
+    <button type="submit">Добавить</button>
+   </div>
+</form>
+<a href='{{url_for('showContacts')}}'>
+  <button>Отменить</button>
+</a>
