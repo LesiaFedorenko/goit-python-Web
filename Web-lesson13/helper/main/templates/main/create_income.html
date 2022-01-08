@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Создать доход
+{% endblock %}
+
+{% block content %}
+  <h1>Создать доход</h1>
+   <form method="post">
+      {% csrf_token %}
+              <table>
+        {{ form.as_table }}
+        </table>
+      <button type="submit" class="btn btn-success">Добавить</button>
+      <span>{{error}}</span>
+  </form>
+
+{% endblock %}

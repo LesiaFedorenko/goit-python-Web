@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Отчет
+{% endblock %}
+
+ {% block content %}
+
+    <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Выберите период</h4>
+            </div>
+
+<form action="" method="get">
+<table style="width:30%">
+<tr>
+<td><input type="date"  class="datepicker" name="q1"> </td>
+<td style="width:5%"> between </td>
+<td><input type="date"  class="datepicker" name="q2"></td>
+<br>
+<td><input type="submit" value="Search"></td>
+</tr>
+</table>
+</form>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'main/base.html' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">ДОХОДЫ</h4>
+            </div>
+            <div class="card-body">
+                {% if incomes %}
+                {% for el in incomes %}
+                <div class="alert alert-warning" mt-2">
+                <h3>{{ el.title }}</h3>
+                <p>{{ el.category }}, {{ el.comment }}</p>
+                <p>{{ el.sum }}</p>
+                <p>{{ el.date }}</p>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p> Нет записей</p>
+            {% endif %}
+           </div>
+         <div class="alert alert-warning" mt-2>
+                        <h3>{{ balance1 }} UAH</h3>
+
+        </div>
+    </div>
+</div>
+<div class="col">
+    <div class="card mb-4 rounded-3 shadow-sm">
+        <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">РАСХОДЫ</h4>
+        </div>
+        <div class="card-body">
+            {% if expenses %}
+            {% for el in expenses %}
+            <div class="alert alert-warning" mt-2>
+                <h3>{{ el.title }}</h3>
+                <p>{{ el.category }}, {{ el.comment }}</p>
+                <p>{{ el.sum }}</p>
+                <p>{{ el.date }}</p>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p> Нет записей</p>
+            {% endif %}
+
+        </div>
+                    <div class="alert alert-warning" mt-2>
+                <h3>{{ balance2 }} UAH</h3>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="col">
+    <div class="card mb-4 rounded-3 shadow-sm">
+        <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">БАЛАНС</h4>
+        </div>
+        <div class="card-body">
+            {% if expenses or incomes %}
+            <div class="alert alert-warning" mt-2>
+                <h3>{{ balance }} UAH </h3>
+            </div>
+            {% else %}
+            <p> Нет записей</p>
+            {% endif %}
+
+        </div>
+    </div>
+
+
+{% endblock %}
